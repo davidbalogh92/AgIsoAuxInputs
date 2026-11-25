@@ -142,19 +142,19 @@ STR_MULLER_PAGE_BASE = 113      # + page 0..3
 STR_MULLER_FUNCTION_BASE = 120  # + list index 0..24
 LIST_MULLER_BUTTON_BASE = 150   # + PCA9555 bit
 STR_MULLER_BUTTON_BASE = 170    # + PCA9555 bit
-MULLER_HINT_TEXT = "Mód: újraindítás után érvényes"
+MULLER_HINT_TEXT = "Mode: restart to apply"
 MULLER_PAGE_TEXTS = ["1 (T1)", "2 (T2)", "3 (T3)", "4 (T4)"]
-MULLER_MODE_TEXTS = ["Ki", "Csak Müller", "AUX-N+Müller"]
+MULLER_MODE_TEXTS = ["Off", "Müller only", "AUX-N+Müller"]
 # Item 0 = none, item n = function n - 1. At most 12 characters (compact
-# layout); ISO 8859-1 has no o with double acute, so "ö" stands in for it.
+# layout).
 MULLER_FUNCTION_TEXTS = [
-    "nincs",
-    "TRAIL auto", "TRAIL be/ki", "TRAIL B3", "TRAIL B5",           # 0..3
-    "TRAIL B4", "TRAIL B6", "Kormány bal", "Kormány jobb",         # 4..7
-    "Cél 100%", "Fökapcsoló", "Be jobb->bal", "Ki bal->jobb",      # 8..11
-    "Be bal->jobb", "Ki jobb->bal", "Adag -", "Adag +",            # 12..15
-    "Keret auto", "Keret szabad", "Keret fel", "Keret le",         # 16..19
-    "Keret behajt", "Keret kihajt", "B fel, J le", "J fel, B le",  # 20..23
+    "none",
+    "TRAIL auto", "TRAIL on/off", "TRAIL B3", "TRAIL B5",            # 0..3
+    "TRAIL B4", "TRAIL B6", "Steer left", "Steer right",             # 4..7
+    "Target 100%", "Main switch", "Sec on R->L", "Sec off L->R",     # 8..11
+    "Sec on L->R", "Sec off R->L", "Rate -", "Rate +",               # 12..15
+    "Boom auto", "Boom free", "Boom up", "Boom down",                # 16..19
+    "Boom fold", "Boom unfold", "L up, R down", "R up, L down",      # 20..23
 ]
 assert len(MULLER_FUNCTION_TEXTS) == 1 + 24
 
@@ -892,7 +892,7 @@ def add_muller_page(pool: Pool, multi: bool, L: Layout):
     functions = [STR_MULLER_FUNCTION_BASE + i for i in range(len(MULLER_FUNCTION_TEXTS))]
     pool += build_input_list(LIST_MULLER_MODE, 0, modes, L)
     if multi:
-        add_label(STR_MULLER_PAGE, L.muller_label, "LAP")
+        add_label(STR_MULLER_PAGE, L.muller_label, "PG")
         pool += build_input_list(LIST_MULLER_PAGE, 0,
                                  [STR_MULLER_PAGE_BASE + p for p in range(NUM_PAGES)], L)
     for label in PAGED_LABELS if multi else JOY_BUTTON_CENTRES:

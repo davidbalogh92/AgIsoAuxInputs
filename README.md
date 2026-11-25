@@ -1,5 +1,7 @@
 # AgIsoAuxInputs
 
+> Fork of [gunicsba/AgIsoAuxInputs](https://github.com/gunicsba/AgIsoAuxInputs) with a [Müller AUX-O output](#müller-aux-o-output) for Müller sprayer job computers. The releases and downloads linked below are the original project's and don't include it: [build this repository](#build--flash) instead.
+
 Open-source ISOBUS **auxiliary input devices** (ISO 11783-6 AUX-N): joysticks, keypads, switch boxes. They plug into any Virtual Terminal and are assigned to implement functions through the VT's standard aux-assignment screen.
 
 Built on [AgIsoStack++](https://github.com/Open-Agriculture/AgIsoStack-plus-plus). Not affiliated with Open-Agriculture.
@@ -79,10 +81,15 @@ The main screen also has an AUX designator pointer per button, so the VT can dra
 
 #### Müller AUX-O output
 
+Added in this fork.
+
+- **Tested with** a Müller Jobrechner 2 (2006 Conform), software 6.8a, hardware 3.2, on an indoor test bench with the controller and all its peripherals connected. Everything worked there. Not yet tested on a sprayer in the field. To my knowledge this joystick isn't officially meant for that job computer, but in practice everything works.
+- **For your own experiments only.** This project is not affiliated with or endorsed by Müller-Elektronik. The output identifies itself with their manufacturer code (98), because the job computer ignored the joystick's own NAME. It moves booms and switches sections: check every function, and that unplugging the CAN cable while holding a button stops it, before using it on a machine.
+
 The joystick can also send a Müller sprayer job computer the messages of the original Müller joystick (AUX-O, "Auxiliary Input Type 1" status). It is off by default. On the VT, open **SETUP**, then the **MÜLLER** soft key:
 
-- The mode at the top: `Ki` (off), `Csak Müller` (Müller only: the AUX-N buttons stay released, the analog axes keep working as AUX-N) or `AUX-N+Müller` (both). Press **RESTART** to apply it.
-- One list per button with the Müller function it sends. Changes apply to the next press. In multi-page mode each page has its own assignment: `LAP` picks the page being edited (pressing T1-T4 on the joystick does too), and T1-T4 themselves can't send a Müller function. A page that was never edited starts with the single-page assignment.
+- The mode at the top: `Off`, `Müller only` (the AUX-N buttons stay released, the analog axes keep working as AUX-N) or `AUX-N+Müller` (both). Press **RESTART** to apply it.
+- One list per button with the Müller function it sends. Changes apply to the next press. In multi-page mode each page has its own assignment: `PG` picks the page being edited (pressing T1-T4 on the joystick does too), and T1-T4 themselves can't send a Müller function. A page that was never edited starts with the single-page assignment.
 
 While the mode is on, the board claims a second address with a Müller-like NAME (manufacturer 98, identity `0x1ABCDE`, preferred address 0x90), since the job computer accepts the messages by NAME. Two boards in Müller mode on one bus would share that NAME; the NVS keys `identity` and `sa` (namespace `muller`) override it, but there's no page for them yet.
 
