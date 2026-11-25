@@ -83,7 +83,8 @@ The main screen also has an AUX designator pointer per button, so the VT can dra
 
 Added in this fork.
 
-- **Tested with** a Müller Jobrechner 2 (2006 Conform), software 6.8a, hardware 3.2, on an indoor test bench with the controller and all its peripherals connected. Everything worked there. Not yet tested on a sprayer in the field. To my knowledge this joystick isn't officially meant for that job computer, but in practice everything works.
+- **Tested with** a Müller Jobrechner 2 (2006 Conform), software 6.8a, hardware 3.2, on an indoor test bench with the controller and all its peripherals connected. Everything worked there. Not yet tested on a sprayer in the field.
+- **Other job computers:** the Jobrechner 2 exists as Conform 2003 to 2006, with many hardware and software versions. In practical experience it makes no difference to the joystick which of them it meets. It can also work with the Jobrechner 3 Maxi and Midi, if theirs supports the ME joystick function. This experience is with Müller sprayer controllers only; how controllers for other implements react isn't known.
 - **For your own experiments only.** This project is not affiliated with or endorsed by Müller-Elektronik. The output identifies itself with their manufacturer code (98), because the job computer ignored the joystick's own NAME. It moves booms and switches sections: check every function, and that unplugging the CAN cable while holding a button stops it, before using it on a machine.
 
 The joystick can also send a Müller sprayer job computer the messages of the original Müller joystick (AUX-O, "Auxiliary Input Type 1" status). It is off by default. On the VT, open **SETUP**, then the **MÜLLER** soft key:
